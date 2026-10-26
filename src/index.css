@@ -1,0 +1,323 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #08090b;
+  --color-graphite: #15171b;
+  --color-paper: #f2f0ea;
+  --color-acid: #c6ff6b;
+
+  --font-sans: 'Inter Tight Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+
+  --ease-cine: cubic-bezier(0.16, 1, 0.3, 1);
+  --breakpoint-3xl: 112rem;
+}
+
+@layer base {
+  html {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: 'ss01', 'cv11';
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--color-acid);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-acid);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  button:not(:disabled),
+  [role='tab'] {
+    cursor: pointer;
+  }
+
+  section[id],
+  article[id] {
+    scroll-margin-top: 4rem;
+  }
+
+  img {
+    -webkit-user-drag: none;
+  }
+}
+
+/* Cursor customizado: só em mouse/trackpad, e nunca com um modal aberto. */
+html.has-cursor:not(.modal-open),
+html.has-cursor:not(.modal-open) * {
+  cursor: none !important;
+}
+
+html.modal-open {
+  overflow: hidden;
+}
+
+html.modal-open .custom-cursor {
+  opacity: 0 !important;
+}
+
+@utility display {
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.86;
+  text-transform: uppercase;
+  font-kerning: normal;
+}
+
+@utility label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@utility hairline {
+  border-color: rgb(242 240 234 / 0.12);
+}
+
+@utility text-mute {
+  color: rgb(242 240 234 / 0.62);
+}
+
+@utility mask-line {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.16em 0.12em;
+  margin-block: -0.16em -0.12em;
+}
+
+/* Grão sutil sobre a página inteira. */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Piso em perspectiva da cena de abertura. */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgb(242 240 234 / 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(242 240 234 / 0.09) 1px, transparent 1px);
+  background-size: 72px 72px;
+  transform: perspective(620px) rotateX(64deg);
+  transform-origin: 50% 100%;
+  mask-image: linear-gradient(to top, black 0%, rgb(0 0 0 / 0.65) 35%, transparent 82%);
+  animation: grid-travel 7s linear infinite;
+}
+
+@keyframes grid-travel {
+  to {
+    background-position: 0 72px;
+  }
+}
+
+.blueprint {
+  background-image:
+    linear-gradient(to right, rgb(242 240 234 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(242 240 234 / 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(198 255 107 / 0.55);
+  }
+  60% {
+    box-shadow: 0 0 0 7px rgb(198 255 107 / 0);
+  }
+}
+
+.status-dot {
+  animation: pulse-dot 2.4s var(--ease-cine) infinite;
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(260%);
+  }
+}
+
+.scroll-cue {
+  animation: scroll-cue 1.9s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.caret {
+  animation: blink 1.1s steps(1) infinite;
+}
+
+/* Pacote de dados percorrendo as conexões dos diagramas. */
+@keyframes travel-x {
+  from {
+    left: 0%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+@keyframes travel-y {
+  from {
+    top: 0%;
+  }
+  to {
+    top: 100%;
+  }
+}
+
+.packet-x {
+  animation: travel-x 2.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.packet-y {
+  animation: travel-y 2.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Diálogos nativos (detalhes do projeto e menu mobile). */
+@layer base {
+  dialog.sheet {
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-paper);
+    overflow: visible;
+  }
+}
+
+dialog.sheet::backdrop {
+  background: rgb(8 9 11 / 0.78);
+  backdrop-filter: blur(4px);
+}
+
+dialog.sheet[open] {
+  animation: sheet-in 0.55s var(--ease-cine) both;
+}
+
+dialog.sheet[open]::backdrop {
+  animation: fade-in 0.4s ease both;
+}
+
+dialog.sheet[data-closing] {
+  animation: sheet-out 0.28s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+dialog.sheet[data-closing]::backdrop {
+  animation: fade-out 0.28s ease both;
+}
+
+dialog.menu-sheet[open] {
+  animation: menu-in 0.6s var(--ease-cine) both;
+}
+
+dialog.menu-sheet[data-closing] {
+  animation: menu-out 0.3s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+}
+
+@keyframes sheet-out {
+  to {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@keyframes menu-in {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes menu-out {
+  from {
+    clip-path: inset(0 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-grid,
+  .scroll-cue,
+  .packet-x,
+  .packet-y,
+  .status-dot,
+  .caret {
+    animation: none !important;
+  }
+}

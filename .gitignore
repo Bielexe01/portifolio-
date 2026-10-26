@@ -1,0 +1,7 @@
+node_modules
+dist
+*.local
+.env
+scripts/.captures
+.DS_Store
+scripts/.smoke

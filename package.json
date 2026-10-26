@@ -1,0 +1,38 @@
+{
+  "name": "vitor-gabriel-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Portfólio cinematográfico de Vitor Gabriel Ferreira Ribeiro",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p tsconfig.json && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "capture": "node scripts/capture-projects.mjs",
+    "images": "node scripts/optimize-images.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "og": "node scripts/smoke.mjs --og"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter-tight": "5.3.0",
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "@fontsource/instrument-serif": "5.3.0",
+    "framer-motion": "14.6.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.3.3",
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "sharp": "0.35.5",
+    "tailwindcss": "4.3.3",
+    "typescript": "7.0.2",
+    "vite": "8.3.5",
+    "vitest": "5.0.5"
+  }
+}
