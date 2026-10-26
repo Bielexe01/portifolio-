@@ -4,6 +4,7 @@ import type { KeyboardEvent } from 'react'
 import { MaskLines, Reveal, SectionLabel } from '../components/Motion'
 import { sectionMeta } from '../config/navigation'
 import { processSteps } from '../config/process'
+import { spiderQuotes } from '../config/spider'
 import { EASE_CINE, cn } from '../lib/utils'
 
 export function Mindset() {
@@ -52,16 +53,20 @@ export function Mindset() {
               dois.
             </p>
             <div className="mt-6 flex items-center gap-3 label text-paper/45" aria-hidden>
-              <span className="border border-paper/15 px-2 py-1">Interface</span>
+              <span className="border border-accent-blue/40 px-2 py-1 text-accent-blue">Interface</span>
               <span>↔</span>
-              <span className="border border-acid/40 px-2 py-1 text-acid">Sistema</span>
+              <span className="border border-accent/40 px-2 py-1 text-accent">Sistema</span>
             </div>
+            <p className="mt-6 max-w-sm font-serif text-lg italic leading-snug text-paper/70 md:text-xl">
+              <span aria-hidden className="mr-2 font-mono text-[0.7rem] not-italic text-accent">//</span>
+              {spiderQuotes.responsibility}
+            </p>
           </Reveal>
         </div>
 
         {/* Diagrama: etapas conectadas por uma linha que avança. */}
         <Reveal className="mt-16 md:mt-24">
-          <div className="relative border border-paper/10 bg-graphite/40">
+          <div data-perch="processo" className="relative border border-paper/10 bg-graphite/40">
             <div className="flex items-center justify-between border-b border-paper/10 px-4 py-3 label text-paper/45 md:px-6">
               <span>process.flow</span>
               <span className="tabular-nums">
@@ -74,7 +79,7 @@ export function Mindset() {
                 {/* Linha de conexão: vertical no celular, horizontal no desktop. */}
                 <div aria-hidden className="absolute bottom-[1.125rem] left-[1.125rem] top-[1.125rem] w-px bg-paper/12 lg:hidden">
                   <motion.div
-                    className="absolute inset-0 origin-top bg-acid"
+                    className="absolute inset-0 origin-top bg-accent"
                     initial={false}
                     animate={{ scaleY: progress }}
                     transition={{ duration: 0.8, ease: EASE_CINE }}
@@ -86,7 +91,7 @@ export function Mindset() {
                   style={{ left: 'calc((100% - 5rem) / 12)', right: 'calc((100% - 5rem) / 12)' }}
                 >
                   <motion.div
-                    className="absolute inset-0 origin-left bg-acid"
+                    className="absolute inset-0 origin-left bg-accent"
                     initial={false}
                     animate={{ scaleX: progress }}
                     transition={{ duration: 0.8, ease: EASE_CINE }}
@@ -117,11 +122,11 @@ export function Mindset() {
                       <span
                         className={cn(
                           'relative grid h-9 w-9 shrink-0 place-items-center border font-mono text-[0.7rem] transition-colors duration-500 lg:h-[2.25rem] lg:w-[2.25rem]',
-                          isActive ? 'border-acid bg-acid text-ink' : done ? 'border-acid/60 bg-ink text-acid' : 'border-paper/20 bg-ink text-paper/50 group-hover:border-paper/50',
+                          isActive ? 'border-accent bg-accent text-ink' : done ? 'border-accent/60 bg-ink text-accent' : 'border-paper/20 bg-ink text-paper/50 group-hover:border-paper/50',
                         )}
                       >
                         {item.code}
-                        {isActive ? <span aria-hidden className="absolute -inset-1.5 border border-acid/30" /> : null}
+                        {isActive ? <span aria-hidden className="absolute -inset-1.5 border border-accent/30" /> : null}
                       </span>
                       <span className={cn('text-sm leading-tight transition-colors md:text-base', isActive ? 'text-paper' : 'text-paper/55 group-hover:text-paper/80')}>
                         {item.title}
@@ -168,14 +173,14 @@ export function Mindset() {
                       <button
                         type="button"
                         onClick={() => select(active - 1)}
-                        className="h-10 border border-paper/20 px-4 label transition-colors hover:border-acid hover:text-acid"
+                        className="h-10 border border-paper/20 px-4 label transition-colors hover:border-accent hover:text-accent"
                       >
                         ← Anterior
                       </button>
                       <button
                         type="button"
                         onClick={() => select(active + 1)}
-                        className="h-10 border border-paper/20 px-4 label transition-colors hover:border-acid hover:text-acid"
+                        className="h-10 border border-paper/20 px-4 label transition-colors hover:border-accent hover:text-accent"
                       >
                         {active === last ? 'Recomeçar ↺' : 'Próxima →'}
                       </button>

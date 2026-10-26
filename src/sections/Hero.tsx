@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import type { PointerEvent } from 'react'
 import { MaskLines } from '../components/Motion'
 import { ArrowDown } from '../components/Icons'
+import { CornerWeb } from '../components/spider/CornerWeb'
 import { profile } from '../config/profile'
 import { scrollToSection, useFinePointer, useLocalTime } from '../hooks'
 import { EASE_CINE } from '../lib/utils'
@@ -71,8 +72,8 @@ export function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1.8, ease: 'easeOut' }}
         >
-          <div className="h-full w-full bg-[radial-gradient(ellipse_at_top,rgb(242_240_234/0.13),transparent_62%)]" />
-          <div className="absolute left-1/2 top-0 h-full w-[46%] -translate-x-1/2 bg-[linear-gradient(to_bottom,rgb(242_240_234/0.07),transparent_70%)] blur-2xl [clip-path:polygon(42%_0,58%_0,100%_100%,0_100%)]" />
+          <div className="h-full w-full bg-[radial-gradient(ellipse_at_top,rgb(91_140_255/0.16),transparent_62%)]" />
+          <div className="absolute left-1/2 top-0 h-full w-[46%] -translate-x-1/2 bg-[linear-gradient(to_bottom,rgb(196_210_255/0.08),transparent_70%)] blur-2xl [clip-path:polygon(42%_0,58%_0,100%_100%,0_100%)]" />
         </motion.div>
 
         <motion.div className="absolute inset-x-[-25%] bottom-0 h-[58%]" style={{ x: gridX }}>
@@ -86,6 +87,8 @@ export function Hero() {
         ))}
 
         <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_120%,transparent_40%,var(--color-ink)_85%)]" />
+
+        <CornerWeb corner="top-right" delay={0.6} perch="inicio" className="text-paper/[0.14]" />
       </div>
 
       <motion.div
@@ -98,11 +101,11 @@ export function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
-          <span className="text-acid">//</span> {profile.concept}
+          <span className="text-accent">//</span> {profile.concept}
         </motion.p>
 
         <motion.div className="mt-auto pt-10" style={{ x: titleX, y: titleY }}>
-          <h1 className="display text-[clamp(2.4rem,12.4vw,4.5rem)] md:text-[clamp(4.5rem,min(10.2vw,19svh),12.5rem)]">
+          <h1 className="verse display text-[clamp(2.4rem,12.4vw,4.5rem)] md:text-[clamp(4.5rem,min(10.2vw,19svh),12.5rem)]">
             <span className="sr-only">
               {profile.shortName}, {profile.role}. Eu imagino. Eu desenvolvo. Eu entrego.
             </span>
@@ -145,7 +148,7 @@ export function Hero() {
               }}
               className="group relative mt-7 inline-flex h-14 w-full items-center justify-between gap-6 overflow-hidden bg-paper px-6 text-ink sm:w-auto"
             >
-              <span aria-hidden className="absolute inset-0 origin-bottom scale-y-0 bg-acid transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-y-100 group-focus-visible:scale-y-100" />
+              <span aria-hidden className="absolute inset-0 origin-bottom scale-y-0 bg-accent transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-y-100 group-focus-visible:scale-y-100" />
               <span className="relative label text-[0.75rem] font-medium tracking-[0.16em]">Explorar projetos</span>
               <ArrowDown size={18} className="relative transition-transform duration-500 group-hover:translate-y-0.5" />
             </a>
@@ -170,7 +173,7 @@ export function Hero() {
           className="group mt-8 flex items-center gap-3 self-start label text-mute transition-colors hover:text-paper md:mt-10 lg:self-center"
         >
           <span aria-hidden className="relative block h-10 w-px overflow-hidden bg-paper/15">
-            <span className="scroll-cue absolute left-0 top-0 block h-4 w-px bg-acid" />
+            <span className="scroll-cue absolute left-0 top-0 block h-4 w-px bg-accent" />
           </span>
           Scroll
           <span className="sr-only">até o perfil</span>
@@ -200,7 +203,7 @@ function CodeFragment({ text, className, depth, index, sourceX, sourceY }: CodeF
       animate={{ opacity: 1 }}
       transition={{ duration: 1.2, delay: 0.9 + index * 0.12 }}
     >
-      <span className="text-acid/60">›</span> {text}
+      <span className="text-accent-blue/70">›</span> {text}
     </motion.span>
   )
 }
@@ -213,7 +216,7 @@ function HeroLine({ verb, accent = false }: { verb: string; accent?: boolean }) 
       </span>
       <span className="hidden md:inline"> </span>
       {verb}
-      <span className={accent ? 'text-acid' : undefined}>.</span>
+      <span className={accent ? 'text-accent' : undefined}>.</span>
     </span>
   )
 }
@@ -228,12 +231,12 @@ function TechPanel() {
         <span className="flex gap-1" aria-hidden>
           <span className="h-1 w-1 bg-paper/30" />
           <span className="h-1 w-1 bg-paper/30" />
-          <span className="h-1 w-3 bg-acid/70" />
+          <span className="h-1 w-3 bg-accent/70" />
         </span>
       </div>
       <div className="px-4 py-3.5">
-        <p className="flex items-center gap-2.5 text-acid">
-          <span className="status-dot h-2 w-2 rounded-full bg-acid" aria-hidden />
+        <p className="flex items-center gap-2.5 text-accent-blue">
+          <span className="status-dot h-2 w-2 rounded-full bg-accent-blue" aria-hidden />
           {profile.availability}
         </p>
         <dl className="mt-3.5 grid grid-cols-[4.75rem_1fr] gap-x-3 gap-y-2 text-paper/80">

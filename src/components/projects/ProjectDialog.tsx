@@ -27,7 +27,7 @@ export function ProjectDialog({ project, open, onClose }: ProjectDialogProps) {
               type="button"
               onClick={onClose}
               autoFocus
-              className="flex h-10 shrink-0 items-center gap-2 border border-paper/20 px-3 label hover:border-acid hover:text-acid"
+              className="flex h-10 shrink-0 items-center gap-2 border border-paper/20 px-3 label hover:border-accent hover:text-accent"
             >
               <span className="hidden sm:inline">Fechar</span>
               <Close size={14} />
@@ -46,7 +46,7 @@ export function ProjectDialog({ project, open, onClose }: ProjectDialogProps) {
                   <ul className="mt-3 space-y-2 border-l border-paper/10 pl-4 text-[0.95rem] text-paper/85">
                     {detail.items.map((item) => (
                       <li key={item} className="relative">
-                        <span aria-hidden className="absolute -left-[1.1rem] top-[0.6em] h-px w-2 bg-acid/70" />
+                        <span aria-hidden className="absolute -left-[1.1rem] top-[0.6em] h-px w-2 bg-accent/70" />
                         {item}
                       </li>
                     ))}
@@ -57,7 +57,7 @@ export function ProjectDialog({ project, open, onClose }: ProjectDialogProps) {
 
             {project.note ? (
               <p className="mt-8 border border-paper/10 bg-ink/50 p-4 font-mono text-[0.75rem] leading-relaxed text-paper/60">
-                <span className="text-acid">NOTA ·</span> {project.note}
+                <span className="text-accent">NOTA ·</span> {project.note}
               </p>
             ) : null}
           </div>
@@ -75,7 +75,7 @@ export function ProjectDialog({ project, open, onClose }: ProjectDialogProps) {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex h-11 items-center justify-between gap-3 bg-paper px-4 text-ink transition-colors hover:bg-acid"
+                className="group inline-flex h-11 items-center justify-between gap-3 bg-paper px-4 text-ink transition-colors hover:bg-accent"
               >
                 <span className="label text-[0.7rem] font-medium">{displayHost(project.url)}</span>
                 <ArrowUpRight size={15} />

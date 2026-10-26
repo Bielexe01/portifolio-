@@ -9,8 +9,8 @@ interface NodeProps {
 
 function Node({ code, title, text, highlight = false }: NodeProps) {
   return (
-    <div className={`relative border bg-ink/80 p-3 md:p-4 ${highlight ? 'border-acid/50' : 'border-paper/15'}`}>
-      <span aria-hidden className="absolute -left-px -top-px h-2 w-2 border-l border-t border-acid" />
+    <div className={`relative border bg-ink/80 p-3 md:p-4 ${highlight ? 'border-accent/50' : 'border-paper/15'}`}>
+      <span aria-hidden className="absolute -left-px -top-px h-2 w-2 border-l border-t border-accent" />
       <p className="font-mono text-[0.6rem] tracking-[0.14em] text-paper/40">{code}</p>
       <p className="mt-1 text-sm font-semibold tracking-tight md:text-base">{title}</p>
       <p className="mt-1 text-xs leading-snug text-mute md:text-[0.8rem]">{text}</p>
@@ -21,7 +21,7 @@ function Node({ code, title, text, highlight = false }: NodeProps) {
 function VerticalLink() {
   return (
     <div aria-hidden className="relative mx-auto h-10 w-px bg-paper/20 md:h-14">
-      <span className="packet-y absolute left-1/2 block h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 bg-acid" />
+      <span className="packet-y absolute left-1/2 block h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 bg-accent" />
     </div>
   )
 }
@@ -32,7 +32,7 @@ export function SystemsSchematic() {
     <Reveal>
       <figure className="blueprint relative border border-paper/12 bg-graphite/50 p-4 sm:p-6 md:p-10">
         <figcaption className="mb-6 flex flex-wrap items-center justify-between gap-2 label md:mb-10">
-          <span className="text-acid">Esquema ilustrativo</span>
+          <span className="text-accent">Esquema ilustrativo</span>
           <span className="text-paper/40">Não representa um sistema específico</span>
         </figcaption>
 
@@ -47,7 +47,7 @@ export function SystemsSchematic() {
             <Node code="N.02" title="Aplicação Delphi" text="Telas e regras de negócio." highlight />
           </div>
           <div aria-hidden className="relative col-start-2 row-start-3 h-px bg-paper/20">
-            <span className="packet-x absolute top-1/2 block h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 bg-acid" />
+            <span className="packet-x absolute top-1/2 block h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 bg-accent" />
           </div>
           <div className="col-start-3 row-start-3">
             <Node code="N.04" title="Integrações" text="Comunicação com outros sistemas e serviços." />

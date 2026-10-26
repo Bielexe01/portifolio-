@@ -265,7 +265,7 @@ export const projects: Project[] = [
       'Experiência com sistemas em Delphi, bancos de dados, operações de PDV e integrações entre serviços. Projetos sem página pública para visitar.',
     tech: ['Delphi', 'Bancos de dados'],
     layout: 'schematic',
-    atmosphere: { base: '#0a0b0c', glow: '#c6ff6b', accent: '#c6ff6b' },
+    atmosphere: { base: '#070914', glow: '#2b5bd7', accent: '#ef3b3b' },
     shots: {},
     details: [
       {

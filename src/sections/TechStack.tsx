@@ -30,7 +30,7 @@ function buildLines(group: TechGroup): Line[] {
   }
   if (ext === 'md') {
     return [
-      { text: <span className="text-acid/80"># {group.label}</span> },
+      { text: <span className="text-accent/80"># {group.label}</span> },
       { text: '' },
       ...group.items.map((item) => ({ text: <>{comment('-')} {item.name}</>, item })),
     ]
@@ -102,11 +102,11 @@ export function TechStack() {
         </div>
 
         <Reveal className="mt-14 md:mt-20">
-          <div className="overflow-hidden border border-paper/12 bg-[#0d0e11] font-mono text-[0.8rem] shadow-[0_50px_140px_-60px_rgb(0_0_0/0.9)]">
+          <div data-perch="stack" className="overflow-hidden border border-paper/12 bg-[#0b0f20] font-mono text-[0.8rem] shadow-[0_50px_140px_-60px_rgb(0_0_0/0.9)]">
             {/* Barra de título */}
             <div className="flex items-center justify-between gap-4 border-b border-paper/10 bg-graphite px-4 py-2.5 text-[0.7rem] text-paper/45">
               <span className="flex items-center gap-2">
-                <span aria-hidden className="h-2 w-2 bg-acid/80" />
+                <span aria-hidden className="h-2 w-2 bg-accent/80" />
                 vitor-gabriel / stack
               </span>
               <span className="hidden sm:inline">{group.file}</span>
@@ -141,10 +141,10 @@ export function TechStack() {
                         onKeyDown={onTabKey}
                         className={cn(
                           'flex shrink-0 items-center gap-2 whitespace-nowrap border-b-2 px-4 py-3 text-left transition-colors lg:border-b-0 lg:border-l-2 lg:py-2',
-                          isActive ? 'border-acid bg-paper/[0.04] text-paper' : 'border-transparent text-paper/50 hover:text-paper/80',
+                          isActive ? 'border-accent bg-paper/[0.04] text-paper' : 'border-transparent text-paper/50 hover:text-paper/80',
                         )}
                       >
-                        <span aria-hidden className={isActive ? 'text-acid' : 'text-paper/30'}>
+                        <span aria-hidden className={isActive ? 'text-accent' : 'text-paper/30'}>
                           {isActive ? '▾' : '▸'}
                         </span>
                         <span>
@@ -160,7 +160,7 @@ export function TechStack() {
               {/* Editor */}
               <div id="stack-editor" role="tabpanel" aria-labelledby={`stack-tab-${group.id}`} className="min-w-0">
                 <div className="flex border-b border-paper/10 text-[0.72rem]">
-                  <span className="border-r border-paper/10 border-t-2 border-t-acid bg-[#0d0e11] px-4 py-2 text-paper/80">{group.file}</span>
+                  <span className="border-r border-paper/10 border-t-2 border-t-accent bg-[#0b0f20] px-4 py-2 text-paper/80">{group.file}</span>
                   <span className="flex-1 bg-graphite/60" />
                 </div>
                 <ol className="overflow-x-auto py-4" aria-label={`Tecnologias: ${group.label}`}>
@@ -168,8 +168,8 @@ export function TechStack() {
                     const item = line.item
                     const isSelected = item?.name === selected.name
                     return (
-                      <li key={`${group.id}-${index}`} className={cn('flex min-h-7 items-center', isSelected && 'bg-acid/[0.07]')}>
-                        <span aria-hidden className={cn('w-12 shrink-0 select-none pr-4 text-right tabular-nums', isSelected ? 'text-acid' : 'text-paper/25')}>
+                      <li key={`${group.id}-${index}`} className={cn('flex min-h-7 items-center', isSelected && 'bg-accent/[0.07]')}>
+                        <span aria-hidden className={cn('w-12 shrink-0 select-none pr-4 text-right tabular-nums', isSelected ? 'text-accent' : 'text-paper/25')}>
                           {index + 1}
                         </span>
                         {item ? (
@@ -200,7 +200,7 @@ export function TechStack() {
                 <p className="text-[0.65rem] tracking-[0.14em] text-paper/35">INSPECTOR</p>
                 <div aria-live="polite" className="mt-4">
                   <p className="font-sans text-3xl font-bold tracking-tight text-paper">{selected.name}</p>
-                  <p className="mt-1 text-[0.7rem] text-acid">{group.label}</p>
+                  <p className="mt-1 text-[0.7rem] text-accent">{group.label}</p>
                   <dl className="mt-6 space-y-5 font-sans">
                     <div>
                       <dt className="font-mono text-[0.65rem] tracking-[0.14em] text-paper/40">O QUE É</dt>
@@ -218,7 +218,7 @@ export function TechStack() {
             {/* Barra de status */}
             <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-1 border-t border-paper/10 bg-graphite px-4 py-2 text-[0.68rem] text-paper/45">
               <span className="flex items-center gap-2">
-                <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-acid" />
+                <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-accent" />
                 {group.items.length} itens · {group.label}
               </span>
               <span className="flex gap-4">

@@ -60,7 +60,7 @@ export function Projects() {
             {projects.map((project, index) => (
               <span
                 key={project.slug}
-                className={cn('w-px transition-all duration-700', index === active ? 'h-10 bg-acid' : 'h-4 bg-paper/20')}
+                className={cn('w-px transition-all duration-700', index === active ? 'h-10 bg-accent' : 'h-4 bg-paper/20')}
               />
             ))}
           </div>
@@ -98,9 +98,9 @@ export function Projects() {
                         event.preventDefault()
                         scrollToSection(`projeto-${project.slug}`)
                       }}
-                      className="group flex items-baseline gap-4 py-3 transition-colors hover:text-acid"
+                      className="group flex items-baseline gap-4 py-3 transition-colors hover:text-accent"
                     >
-                      <span className="text-paper/35 group-hover:text-acid">{String(index + 1).padStart(2, '0')}</span>
+                      <span className="text-paper/35 group-hover:text-accent">{String(index + 1).padStart(2, '0')}</span>
                       <span className="flex-1 truncate">{project.name}</span>
                       <span className="hidden text-paper/35 sm:inline">{project.url ? 'link ↗' : 'sem link'}</span>
                     </a>

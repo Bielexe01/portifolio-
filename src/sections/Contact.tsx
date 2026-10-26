@@ -1,8 +1,10 @@
 import type { MouseEvent, ReactNode } from 'react'
 import { ArrowUp, ArrowUpRight, ChatBubble, GitHubMark, LinkedInMark } from '../components/Icons'
 import { MaskLines, Reveal, SectionLabel } from '../components/Motion'
+import { CornerWeb } from '../components/spider/CornerWeb'
 import { sectionMeta } from '../config/navigation'
 import { contactLinks, profile } from '../config/profile'
+import { spiderQuotes } from '../config/spider'
 import { scrollToSection, useLocalTime } from '../hooks'
 
 interface ContactLink {
@@ -27,6 +29,7 @@ export function Contact() {
   return (
     <section id="contato" aria-labelledby="contato-title" className="relative overflow-hidden border-t border-paper/10">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,rgb(242_240_234/0.06),transparent_70%)]" />
+      <CornerWeb corner="top-left" className="-z-10 text-paper/[0.12]" />
 
       <div className="mx-auto max-w-[1680px] px-5 pt-24 md:px-10 md:pt-36">
         <SectionLabel code={meta.code} title={meta.title} aside="contato" />
@@ -42,13 +45,13 @@ export function Contact() {
             <p className="max-w-sm text-xl leading-snug md:text-2xl">
               Se existe um problema que merece uma solução melhor, vamos construir algo.
             </p>
-            <p className="mt-6 flex items-center gap-2.5 label text-acid">
-              <span aria-hidden className="status-dot h-2 w-2 rounded-full bg-acid" />
+            <p className="mt-6 flex items-center gap-2.5 label text-accent-blue">
+              <span aria-hidden className="status-dot h-2 w-2 rounded-full bg-accent-blue" />
               {profile.availability}
             </p>
           </Reveal>
 
-          <ul className="border-t border-paper/12 lg:col-span-7 lg:col-start-6">
+          <ul data-perch="contato" className="border-t border-paper/12 lg:col-span-7 lg:col-start-6">
             {links.map((link, index) => (
               <Reveal as="li" key={link.id} delay={index * 0.06} className="border-b border-paper/12">
                 <a
@@ -91,7 +94,11 @@ export function Footer() {
         <p className="display text-center text-[clamp(1.5rem,6.4vw,7.5rem)] leading-[0.9] text-paper/90">
           DESIGNED WITH <span className="font-serif font-normal italic tracking-[-0.02em]">INTENT.</span>
           <br />
-          BUILT WITH <span className="text-acid">CODE.</span>
+          BUILT WITH <span className="text-accent">CODE.</span>
+        </p>
+        <p className="mt-6 text-center label text-paper/45">
+          <span aria-hidden className="mr-2 text-accent">✳</span>
+          {spiderQuotes.neighborhood}
         </p>
 
         <div className="mt-14 grid gap-4 border-t border-paper/10 pt-6 label text-paper/45 sm:grid-cols-3 sm:items-center">
@@ -110,7 +117,7 @@ export function Footer() {
               event.preventDefault()
               scrollToSection('inicio')
             }}
-            className="group flex items-center gap-2 transition-colors hover:text-acid sm:justify-self-end"
+            className="group flex items-center gap-2 transition-colors hover:text-accent sm:justify-self-end"
           >
             Voltar ao topo
             <ArrowUp size={14} className="transition-transform group-hover:-translate-y-0.5" />

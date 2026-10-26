@@ -207,15 +207,37 @@ const STATIC_CHECKS = `(() => {
   return { externalHrefs: [...new Set(external.map((l) => l.href))], badRel, brokenAnchors, emptyButtons, imgsNoAlt, h1, overflowX }
 })()`
 
+const SPIDER_CHECKS = `(() => {
+  const root = document.querySelector('[data-spider]')
+  const button = root?.querySelector('button')
+  const box = button?.getBoundingClientRect()
+  return {
+    present: Boolean(button),
+    phrase: root?.querySelector('[aria-live]')?.textContent ?? '',
+    bubble: Boolean(root?.querySelector('.spider-bubble')),
+    sway: Boolean(root?.querySelector('.spider-sway')),
+    inView: box ? box.top >= 0 && box.bottom <= window.innerHeight && box.left >= 0 && box.right <= window.innerWidth : false,
+    x: box ? Math.round(box.left + box.width / 2) : null,
+    station: root?.dataset.station ?? '',
+    pose: root?.dataset.pose ?? '',
+  }
+})()`
+
 async function runDesktop(cdp, report) {
   const page = await openPage(cdp, { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false })
   await page.shot('d-01-hero')
-  report.desktop = { static: await page.evaluate(STATIC_CHECKS) }
+  report.desktop = { static: await page.evaluate(STATIC_CHECKS), spiderTop: await page.evaluate(SPIDER_CHECKS), stations: {} }
 
   // "Explorar projetos" rola até a seção de projetos.
   await page.evaluate(`[...document.querySelectorAll('a[href="#projetos"]')].find((a) => /explorar projetos/i.test(a.textContent)).click()`)
   await sleep(2200)
   report.desktop.exploreTop = await page.evaluate(`Math.round(document.getElementById('projetos').getBoundingClientRect().top)`)
+
+  // Mascote do Homem-Aranha: aparece na tela e fala ao clicar.
+  await page.evaluate(`document.querySelector('[data-spider] button').click()`)
+  await sleep(800)
+  report.desktop.spider = await page.evaluate(SPIDER_CHECKS)
+  await page.shot('d-00-spider')
 
   const stops = [
     ['#perfil', 'd-02-perfil', 0],
@@ -234,10 +256,18 @@ async function runDesktop(cdp, report) {
   for (const [selector, name, offset] of stops) {
     await page.scrollTo(selector, offset)
     await page.shot(name)
+    const spider = await page.evaluate(SPIDER_CHECKS)
+    report.desktop.stations[name] = `${spider.station}/${spider.pose}${spider.inView ? '' : ' (fora da tela)'}`
   }
   await page.evaluate(`window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' })`)
   await sleep(1200)
   await page.shot('d-14-footer')
+  report.desktop.backToTopFree = await page.evaluate(`(() => {
+    const link = [...document.querySelectorAll('footer a')].find((a) => /voltar ao topo/i.test(a.textContent))
+    const box = link.getBoundingClientRect()
+    const points = [box.left + 4, box.left + box.width / 2, box.right - 4]
+    return points.every((x) => { const hit = document.elementFromPoint(x, box.top + box.height / 2); return Boolean(hit && link.contains(hit)) })
+  })()`)
 
   // Diálogo de detalhes.
   await page.scrollTo('#projeto-motors', 60)
@@ -291,6 +321,7 @@ async function runMobile(cdp, report) {
   }
 
   // Menu mobile: abre, navega e fecha.
+  report.mobile.spider = await page.evaluate(SPIDER_CHECKS)
   await page.evaluate(`window.scrollTo({ top: 0, behavior: 'instant' })`)
   await sleep(600)
   await page.evaluate(`[...document.querySelectorAll('header button')].find((b) => /menu/i.test(b.textContent)).click()`)
@@ -313,6 +344,7 @@ async function runReduced(cdp, report) {
   report.reduced = {
     cursor: await page.evaluate(`document.documentElement.classList.contains('has-cursor')`),
     scrollBehavior: await page.evaluate(`getComputedStyle(document.documentElement).scrollBehavior`),
+    spider: await page.evaluate(SPIDER_CHECKS),
     issues: page.issues,
   }
   await page.close()

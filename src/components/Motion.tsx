@@ -112,7 +112,7 @@ interface SectionLabelProps {
 export function SectionLabel({ code, title, className, aside }: SectionLabelProps) {
   return (
     <div className={cn('flex items-center gap-4 label text-mute', className)}>
-      <span className="text-acid">{code}</span>
+      <span className="text-accent">{code}</span>
       <span aria-hidden className="h-px w-8 bg-paper/25" />
       <span>{title}</span>
       <span aria-hidden className="h-px flex-1 bg-paper/10" />

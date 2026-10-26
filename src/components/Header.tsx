@@ -42,7 +42,7 @@ export function Header() {
       >
         <div className="mx-auto flex h-16 max-w-[1680px] items-center justify-between gap-6 px-5 md:px-10">
           <a href="#inicio" onClick={(event) => goTo(event, 'inicio')} className="group flex items-center gap-3" aria-label={`${profile.shortName}, voltar ao início`}>
-            <span className="grid h-8 w-8 place-items-center border border-paper/20 font-mono text-[0.7rem] font-medium tracking-wider transition-colors group-hover:border-acid group-hover:text-acid">
+            <span className="grid h-8 w-8 place-items-center border border-paper/20 font-mono text-[0.7rem] font-medium tracking-wider transition-colors group-hover:border-accent group-hover:text-accent">
               {profile.initials}
             </span>
             <span className="hidden text-sm font-semibold tracking-tight sm:block">{profile.shortName}</span>
@@ -63,11 +63,11 @@ export function Header() {
                         isActive ? 'text-paper' : 'text-paper/55 hover:text-paper',
                       )}
                     >
-                      <span className={cn('font-mono text-[0.65rem] transition-colors', isActive ? 'text-acid' : 'text-paper/35 group-hover:text-paper/60')}>{section.code}</span>
+                      <span className={cn('font-mono text-[0.65rem] transition-colors', isActive ? 'text-accent' : 'text-paper/35 group-hover:text-paper/60')}>{section.code}</span>
                       {section.label}
                       <span
                         aria-hidden
-                        className={cn('absolute inset-x-3 -bottom-px h-px origin-left bg-acid transition-transform duration-500', isActive ? 'scale-x-100' : 'scale-x-0')}
+                        className={cn('absolute inset-x-3 -bottom-px h-px origin-left bg-accent transition-transform duration-500', isActive ? 'scale-x-100' : 'scale-x-0')}
                       />
                     </a>
                   </li>
@@ -86,7 +86,7 @@ export function Header() {
               onClick={() => setMenuOpen(true)}
               aria-haspopup="dialog"
               aria-expanded={menuOpen}
-              className="group flex h-10 items-center gap-3 border border-paper/20 px-4 label transition-colors hover:border-acid hover:text-acid lg:hidden"
+              className="group flex h-10 items-center gap-3 border border-paper/20 px-4 label transition-colors hover:border-accent hover:text-accent lg:hidden"
             >
               Menu
               <span aria-hidden className="flex w-4 flex-col gap-[5px]">
@@ -96,7 +96,7 @@ export function Header() {
             </button>
           </div>
         </div>
-        <motion.div aria-hidden className="absolute inset-x-0 bottom-0 h-px origin-left bg-acid" style={{ scaleX: progress }} />
+        <motion.div aria-hidden className="absolute inset-x-0 bottom-0 h-px origin-left bg-accent" style={{ scaleX: progress }} />
       </header>
 
       <Modal
@@ -112,12 +112,12 @@ export function Header() {
         <div className="blueprint flex h-full flex-col bg-ink px-5 pb-8 pt-5">
           <div className="flex items-center justify-between">
             <p id="menu-title" className="label text-mute">
-              <span className="text-acid">●</span> Navegação
+              <span className="text-accent">●</span> Navegação
             </p>
             <button
               type="button"
               onClick={() => setMenuOpen(false)}
-              className="flex h-10 items-center gap-2 border border-paper/20 px-4 label hover:border-acid hover:text-acid"
+              className="flex h-10 items-center gap-2 border border-paper/20 px-4 label hover:border-accent hover:text-accent"
             >
               Fechar <Close size={14} />
             </button>
@@ -139,8 +139,8 @@ export function Header() {
                     aria-current={section.id === active ? 'location' : undefined}
                     className="group flex items-baseline gap-4 py-4"
                   >
-                    <span className={cn('font-mono text-xs', section.id === active ? 'text-acid' : 'text-paper/40')}>{section.code}</span>
-                    <span className="display text-[2.6rem] transition-colors group-hover:text-acid">{section.label}</span>
+                    <span className={cn('font-mono text-xs', section.id === active ? 'text-accent' : 'text-paper/40')}>{section.code}</span>
+                    <span className="display text-[2.6rem] transition-colors group-hover:text-accent">{section.label}</span>
                   </a>
                 </li>
               ))}
@@ -149,18 +149,18 @@ export function Header() {
 
           <ul className="mt-8 grid gap-3 label">
             <li>
-              <a href={contactLinks.github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between text-paper/70 hover:text-acid">
+              <a href={contactLinks.github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between text-paper/70 hover:text-accent">
                 GitHub <ArrowUpRight size={14} />
               </a>
             </li>
             <li>
-              <a href={contactLinks.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between text-paper/70 hover:text-acid">
+              <a href={contactLinks.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between text-paper/70 hover:text-accent">
                 LinkedIn <ArrowUpRight size={14} />
               </a>
             </li>
             {contactLinks.whatsapp ? (
               <li>
-                <a href={contactLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between text-paper/70 hover:text-acid">
+                <a href={contactLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between text-paper/70 hover:text-accent">
                   WhatsApp <ArrowUpRight size={14} />
                 </a>
               </li>

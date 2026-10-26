@@ -63,7 +63,7 @@ export function Profile() {
               <ol className="mt-5 border-t border-paper/10">
                 {PRACTICE.map((item, index) => (
                   <Reveal as="li" key={item.title} delay={index * 0.06} className="group grid gap-2 border-b border-paper/10 py-5 sm:grid-cols-[3rem_14rem_1fr] sm:items-baseline sm:gap-6">
-                    <span className="font-mono text-xs text-paper/35 transition-colors group-hover:text-acid">0{index + 1}</span>
+                    <span className="font-mono text-xs text-paper/35 transition-colors group-hover:text-accent">0{index + 1}</span>
                     <span className="text-lg font-semibold tracking-tight">{item.title}</span>
                     <span className="text-mute">{item.text}</span>
                   </Reveal>
@@ -85,7 +85,7 @@ export function Profile() {
                         {profileTags(group).map((tag) => (
                           <li
                             key={tag}
-                            className="border border-paper/15 px-3 py-1.5 text-sm text-paper/85 transition-colors hover:border-acid/70 hover:text-paper"
+                            className="border border-paper/15 px-3 py-1.5 text-sm text-paper/85 transition-colors hover:border-accent/70 hover:text-paper"
                           >
                             {tag}
                           </li>
@@ -120,18 +120,18 @@ function Terminal() {
       </figcaption>
       <div className="overflow-x-auto px-4 py-4">
         <p>
-          <span className="text-acid">$</span> whoami
+          <span className="text-accent">$</span> whoami
         </p>
         <p className="text-paper/70">vitor-gabriel</p>
         <p className="mt-3">
-          <span className="text-acid">$</span> cat perfil.json
+          <span className="text-accent">$</span> cat perfil.json
         </p>
         <pre className="mt-1 whitespace-pre-wrap text-paper/70">
           {'{\n'}
           {rows.map(([key, value], index) => (
             <span key={key}>
               {'  '}
-              <span className="text-paper/45">"{key}"</span>: <span className={key === 'status' ? 'text-acid' : 'text-paper'}>"{value}"</span>
+              <span className="text-paper/45">"{key}"</span>: <span className={key === 'status' ? 'text-accent-blue' : 'text-paper'}>"{value}"</span>
               {index < rows.length - 1 ? ',' : ''}
               {'\n'}
             </span>
@@ -139,7 +139,7 @@ function Terminal() {
           {'}'}
         </pre>
         <p className="mt-3">
-          <span className="text-acid">$</span> <span className="caret inline-block h-[1em] w-[0.55em] translate-y-[0.15em] bg-paper/80" aria-hidden />
+          <span className="text-accent">$</span> <span className="caret inline-block h-[1em] w-[0.55em] translate-y-[0.15em] bg-paper/80" aria-hidden />
         </p>
       </div>
     </figure>

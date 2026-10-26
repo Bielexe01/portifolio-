@@ -142,7 +142,7 @@ function ChapterActions({ project, onOpenDetails }: Pick<PartsProps, 'project' |
           data-cursor="Visitar"
           className="group relative inline-flex h-12 items-center justify-between gap-4 overflow-hidden bg-paper px-5 text-ink"
         >
-          <span aria-hidden className="absolute inset-0 origin-left scale-x-0 bg-acid transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100 group-focus-visible:scale-x-100" />
+          <span aria-hidden className="absolute inset-0 origin-left scale-x-0 bg-accent transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-100 group-focus-visible:scale-x-100" />
           <span className="relative label text-[0.72rem] font-medium">Ver projeto</span>
           <ArrowUpRight size={16} className="relative transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           <span className="sr-only">{project.name} (abre em nova aba)</span>
@@ -153,7 +153,7 @@ function ChapterActions({ project, onOpenDetails }: Pick<PartsProps, 'project' |
           type="button"
           aria-haspopup="dialog"
           onClick={() => onOpenDetails(project)}
-          className="group inline-flex h-12 items-center justify-between gap-4 border border-paper/25 px-5 transition-colors hover:border-acid hover:text-acid"
+          className="group inline-flex h-12 items-center justify-between gap-4 border border-paper/25 px-5 transition-colors hover:border-accent hover:text-accent"
         >
           <span className="label text-[0.72rem] font-medium">Detalhes técnicos</span>
           <Plus size={16} className="transition-transform duration-500 group-hover:rotate-90" />
@@ -232,7 +232,7 @@ function CinemaBand({ primary, mobile, host }: { primary: ProjectShot; mobile?: 
             className="h-full w-full object-cover object-[50%_35%] max-sm:object-top"
           />
         </motion.picture>
-        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(to_bottom,rgb(8_9_11/0.35),transparent_25%,transparent_70%,rgb(8_9_11/0.7))]" />
+        <div aria-hidden className="absolute inset-0 bg-[linear-gradient(to_bottom,rgb(7_9_20/0.35),transparent_25%,transparent_70%,rgb(7_9_20/0.7))]" />
       </div>
       {host ? (
         <figcaption className="absolute bottom-4 left-5 label text-paper/70 md:left-10">

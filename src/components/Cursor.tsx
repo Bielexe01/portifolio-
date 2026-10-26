@@ -1,9 +1,12 @@
 import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useFinePointer } from '../hooks'
+import { senseLines } from '../lib/spider'
 import { cn } from '../lib/utils'
 
 const INTERACTIVE = 'a, button, [role="tab"], [data-cursor]'
+/** "Sentido aranha": riscos que tremem em volta do anel sobre links e botões. */
+const SENSE = senseLines(8, 27, 37, 40)
 
 interface CursorState {
   hover: boolean
@@ -67,13 +70,18 @@ function CursorInner() {
       <motion.div className="absolute left-0 top-0" style={{ x: ringX, y: ringY }}>
         <div
           className={cn(
-            'flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border transition-[width,height,background-color,border-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
-            state.label ? 'border-acid bg-acid text-ink' : state.hover ? 'border-acid/80' : 'border-paper/35',
+            'relative flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border transition-[width,height,background-color,border-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]',
+            state.label ? 'border-accent bg-accent text-ink' : state.hover ? 'border-accent/80' : 'border-paper/35',
             pressed && 'scale-90',
           )}
           style={{ width: ringSize, height: ringSize }}
         >
           {state.label ? <span className="label text-[0.625rem] tracking-[0.12em]">{state.label}</span> : null}
+          {state.hover && !state.label ? (
+            <svg viewBox="0 0 80 80" className="spider-sense absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 overflow-visible">
+              <path d={SENSE} fill="none" stroke="var(--color-accent)" strokeWidth={1.3} strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          ) : null}
         </div>
       </motion.div>
       <motion.div className="absolute left-0 top-0" style={{ x, y }}>
